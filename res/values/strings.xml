@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AlphaLockDB</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="add_menuitem">ADD</string>
+    <string name="launch_menuitem">LAUNCH</string>
+    <string name="remove_menuitem">REMOVE</string>
+    <string name="update_menuitem">UPDATE</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="lock_name">LockScreenApp</string>
+    <string name="unloack">Unlock</string>
+    <color name="mycolor1">#F5DC49</color>
+
+</resources>

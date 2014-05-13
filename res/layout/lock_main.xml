@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:background="@color/mycolor1"
+    android:orientation="vertical"
+     >
+
+  <!--  <group.pals.android.lib.ui.lockpattern.widget.LockPatternView
+        android:id="@+id/patternView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	/> -->
+</RelativeLayout>

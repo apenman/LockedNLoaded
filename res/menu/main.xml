@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menu_add"
+        android:title="@string/add_menuitem"
+        android:showAsAction="always"
+        />
+    
+    <!-- <item android:id="@+id/menu_launch"
+        android:title="@string/launch_menuitem"
+        android:showAsAction="always" 
+        /> -->
+</menu>
