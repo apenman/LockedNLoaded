@@ -36,15 +36,15 @@ public class MyService extends Service{
 	}
 
 
-@Override
-public void onCreate() {
-	 KeyguardManager.KeyguardLock k1;
+	@Override
+	public void onCreate() {
+		KeyguardManager.KeyguardLock k1;
 	 
-	// getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+		// getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
-	 KeyguardManager km =(KeyguardManager)getSystemService(KEYGUARD_SERVICE);
-     k1= km.newKeyguardLock("IN");
-     k1.disableKeyguard();
+		KeyguardManager km =(KeyguardManager)getSystemService(KEYGUARD_SERVICE);
+     		k1= km.newKeyguardLock("IN");
+     		k1.disableKeyguard();
 
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -54,17 +54,16 @@ public void onCreate() {
 
 
 		super.onCreate();
-}
-@Override
-public void onStart(Intent intent, int startId) {
-	// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void onStart(Intent intent, int startId) {
+		super.onStart(intent, startId);
+	}
 
-	super.onStart(intent, startId);
-}
-
-@Override
-public void onDestroy() {
-	unregisterReceiver(mReceiver);
-	super.onDestroy();
-}
+	@Override
+	public void onDestroy() {
+		unregisterReceiver(mReceiver);
+		super.onDestroy();
+	}
 }
