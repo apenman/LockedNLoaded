@@ -15,23 +15,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class LockContentProvider extends ContentProvider  {
-	/** The authority for this content provider. */
 	public static final String AUTHORITY = "com.meatloversv2.alphalockdb.ContentProvider";
-	
-	/** Values for the URIMatcher. */
 	private static final int LOCK_ID = 1;
-	
-	/** The database table to read from and write to, and also the root path for use in the URI matcher.
-	 * This is essentially a label to a two-dimensional array in the database filled with rows of jokes
-	 * whose columns contain joke data. */
 	public static final String BASE_PATH = "lock_table";
-	
-	/** This provider's content location. Used by accessing applications to
-	 * interact with this provider. */
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 	
-	/** Matches content URIs requested by accessing applications with possible
-	 * expected content URI formats to take specific actions in this provider. */
 	private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		sURIMatcher.addURI(AUTHORITY, BASE_PATH, LOCK_ID);
@@ -51,7 +39,6 @@ public class LockContentProvider extends ContentProvider  {
 		Log.d("delete", "deleting joke " + delete);
 		
 		if(deleteCount > 0) {
-			/** Alert any watchers of an underlying data change for content/view refreshing. */
 			getContext().getContentResolver().notifyChange(arg0, null);
 		}
 		
@@ -60,13 +47,11 @@ public class LockContentProvider extends ContentProvider  {
 
 	@Override
 	public String getType(Uri uri) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		// TODO Auto-generated method stub
 		//Toast.makeText(this.getContext(), (CharSequence) values.get(LockTable.LOCK_PATTERN), Toast.LENGTH_LONG).show();
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		sURIMatcher.match(uri);
@@ -79,7 +64,6 @@ public class LockContentProvider extends ContentProvider  {
 
 	@Override
 	public boolean onCreate() {
-		// TODO Auto-generated method stub
 		database = new LockDatabaseHelper(this.getContext(), "database", null, 1);
 		String settingsPattern = "fa3b8ffe29ed4bc6de29350d87ef72d42b13d990";
 		ContentValues values = new ContentValues();
@@ -95,17 +79,12 @@ public class LockContentProvider extends ContentProvider  {
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		Log.d("query", "queried");
-		// TODO Auto-generated method stub
-		/** Use a helper class to perform a query for us. */
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 	 
-		/** Make sure the projection is proper before querying. */
 		checkColumns(projection);
 	 
-		/** Set up helper to query our jokes table. */
 		queryBuilder.setTables(LockTable.DATABASE_TABLE_LOCK);
 	 
-		/** Match the passed-in URI to an expected URI format. */
 		sURIMatcher.match(uri);
 		
 		selection = null;
@@ -113,7 +92,6 @@ public class LockContentProvider extends ContentProvider  {
 		SQLiteDatabase db = this.database.getWritableDatabase();
 		Cursor cursor = queryBuilder.query(db, projection, selection, null, null, null, null);
 	 
-		/** Set the cursor to automatically alert listeners for content/view refreshing. */
 		cursor.setNotificationUri(getContext().getContentResolver(), uri);
 		if(cursor == null) {
 			Log.d("query", "NULL");
@@ -125,7 +103,6 @@ public class LockContentProvider extends ContentProvider  {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		// TODO Auto-generated method stub
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		sURIMatcher.match(uri);
 		int updateCount = 0;
@@ -134,7 +111,6 @@ public class LockContentProvider extends ContentProvider  {
 		updateCount = sqlDB.update(LockTable.DATABASE_TABLE_LOCK, values, update, null);
 		
 		if(updateCount > 0) {
-			/** Alert any watchers of an underlying data change for content/view refreshing. */
 			getContext().getContentResolver().notifyChange(uri, null);
 		}
 		
